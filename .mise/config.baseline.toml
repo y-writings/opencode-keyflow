@@ -1,0 +1,16 @@
+[settings]
+experimental = true
+
+[hooks]
+enter = "if [ -f lefthook.yaml ]; then lefthook install; fi"
+
+[env]
+GH_CONFIG_DIR="{{config_root}}/.gh"
+
+[tasks."baseline:pin"]
+description = "Pin repository references with pinact and dockerfile-pin"
+run = ["pinact run --check --fix", "dockerfile-pin run --write"]
+
+[tasks."baseline:scan"]
+description = "Scan all repository files with betterleaks"
+run = ["betterleaks dir --no-banner --redact=20 ."]
