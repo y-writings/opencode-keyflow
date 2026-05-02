@@ -1,1 +1,3 @@
-.gh
+/.gh
+node_modules/
+dist/
